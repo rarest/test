@@ -4,13 +4,13 @@
 #include <iomanip>
 
 using namespace std;
+USE_INTERVIEW_NMW
 
 shared_ptr<uint8_t> init_matrix(int w, int h) {
     shared_ptr<uint8_t> matrix(new uint8_t[h * w]);
     for (int i = 0; i < h * w; i++) {
         matrix.get()[i] = i;
     }
-
     return matrix;
 }
 
@@ -22,6 +22,7 @@ void print_matrix(uint8_t *matrix, int w, int h) {
         }
         std::cout << endl;
     }
+    std::cout << endl;
 }
 
 

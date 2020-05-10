@@ -6,6 +6,10 @@
 #define INTERVIEW_COMMON_H
 #include <stdint.h>
 
+#define BEGIN_INTERVIEW_NMS namespace interview {
+#define END_INTERVIEW_NMS }
+#define USE_INTERVIEW_NMW using namespace interview;
+
 template<class T>
 void swap(T & val1, T&val2){
     T tmp = val1;
