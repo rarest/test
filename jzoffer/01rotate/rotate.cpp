@@ -10,7 +10,6 @@ void rotate90_clockwise(uint8_t *dst, const uint8_t *src, int w, int h) {
             dst[h * j + h - 1 - i] = src[i * w + j];
         }
     }
-
 }
 
 void rotate90_anticlockwise(uint8_t *dst, const uint8_t *src, int w, int h) {
@@ -22,6 +21,12 @@ void rotate90_anticlockwise(uint8_t *dst, const uint8_t *src, int w, int h) {
     }
 }
 
+/**
+ *
+ * @param src
+ * @param w
+ * @param h
+ */
 void rotate90_clockwise(uint8_t *src, int w, int h) {
     if (!src) return;
 }
