@@ -22,8 +22,8 @@ BEGIN_INTERVIEW_NMS
         pEnd--;
 
         reverse_region(pBegin, pEnd);
-
-        while (*pEnd != '\0') {
+        pBegin = pEnd = pData;
+        while (*pBegin != '\0') {
             if (*pBegin == ' ') {
                 pBegin++;
                 pEnd++;
@@ -34,6 +34,27 @@ BEGIN_INTERVIEW_NMS
                 pEnd++;
             }
         }
+        return pData;
+    }
+
+
+    char*  left_rotate_string(char* pData, int n) {
+        if(pData) {
+            int nLength =  strlen(pData);
+            if(nLength > 0 && n > 0 && n < nLength) {
+                char* firstStart = pData;
+                char* firstEnd = pData + n -1;
+                char* secondStart = pData + n;
+                char* secondEnd = pData + nLength - 1;
+                //翻转字符串的前面 n 个字符
+                reverse_region(firstStart, firstEnd);
+                //翻转字符串的后面部分
+                reverse_region(secondStart, secondEnd);
+                //翻转整个字符串
+                reverse_region(firstStart, secondEnd);
+            }
+        }
+
         return pData;
     }
 END_INTERVIEW_NMS

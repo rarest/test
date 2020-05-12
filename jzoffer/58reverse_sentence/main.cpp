@@ -21,6 +21,11 @@ int main() {
     char* result1 = reverse_sentence(p1);
     printf("output sentence: %s\n", result1);
 
+    char str[] = "abcdefg";
+
+    printf("input str: %s\n", str);
+    char* strResult = left_rotate_string(str,3);
+    printf("output str: %s\n", strResult);
 
     return 0;
 }
