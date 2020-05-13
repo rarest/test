@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 project(jzoffer)
-
+add_subdirectory(test)
 add_subdirectory(common)
 add_subdirectory(rotate)
 add_subdirectory(24_reverseList)
