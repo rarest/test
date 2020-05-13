@@ -1,6 +1,7 @@
 #include "test.h"
 
 BEGIN_INTERVIEW_NS
+    Foo foo;
 
     void printFoo() {
         printf("in printFoo foo(%p) is %d\n", &foo, foo.getBar());
