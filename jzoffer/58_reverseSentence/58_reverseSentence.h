@@ -2,24 +2,26 @@
 // Created by Chen Shuquan on 2020/5/11.
 //
 
-#ifndef INTERVIEW_REVERSE_STENTENCE_H
-#define INTERVIEW_REVERSE_STENTENCE_H
+#ifndef INTERVIEW_58_REVERSESENTENCE_H
+#define INTERVIEW_58_REVERSESENTENCE_H
 
 #include "common.h"
-
-BEGIN_INTERVIEW_NMS
+/**
+ *  reverse sentence
+ */
+BEGIN_INTERVIEW_NS
     /**
      *  abc -> cba
      * @param pBegin
      * @param pEnd
      */
-    void reverse_region(char *pBegin, char *pEnd);
+    void reverseRegion(char *pBegin, char *pEnd);
     /**
      *   i am a student.  student. a am i
      * @param pData
      * @return
      */
-    char *reverse_sentence(char *pData);
+    char* reverseSentence(char *pData);
 
     /**
      * abcdefg 2  ->  cdefgab
@@ -29,7 +31,7 @@ BEGIN_INTERVIEW_NMS
      * @param n
      * @return
      */
-    char* left_rotate_string(char *pStr, int n);
+    char* leftRotateString(char *pStr, int n);
 
-END_INTERVIEW_NMS
-#endif //INTERVIEW_REVERSE_STENTENCE_H
+END_INTERVIEW_NS
+#endif //INTERVIEW_58_REVERSESENTENCE_H

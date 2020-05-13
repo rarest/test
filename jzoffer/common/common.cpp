@@ -4,7 +4,7 @@
 
 #include "common.h"
 
-BEGIN_INTERVIEW_NMS
+BEGIN_INTERVIEW_NS
     shared_ptr<uint8_t> init_matrix(int w, int h) {
         shared_ptr<uint8_t> matrix(new uint8_t[h * w]);
         for (int i = 0; i < h * w; i++) {
@@ -24,4 +24,4 @@ BEGIN_INTERVIEW_NMS
         std::cout << endl;
     }
 
-END_INTERVIEW_NMS
+END_INTERVIEW_NS

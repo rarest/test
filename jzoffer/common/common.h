@@ -10,27 +10,28 @@
 #include <iostream>
 #include <iomanip>
 
-#define BEGIN_INTERVIEW_NMS namespace interview {
-#define END_INTERVIEW_NMS }
-#define USE_INTERVIEW_NMW using namespace interview;
+#define BEGIN_INTERVIEW_NS namespace interview {
+#define END_INTERVIEW_NS }
+#define USE_INTERVIEW_NS using namespace interview;
 using namespace std;
-BEGIN_INTERVIEW_NMS
+BEGIN_INTERVIEW_NS
     template<class T>
     void swap(T &val1, T &val2) {
         T tmp = val1;
         val1 = val2;
         val2 = tmp;
     }
-    template <class T>
-    struct SListNode {
-        T val;
-    };
-
+    typedef struct SListNode {
+        int val = 0;
+        SListNode *next = nullptr;
+    } SListNode, *PSListNode, **PPSListNode;
 
     shared_ptr<uint8_t> init_matrix(int w, int h);
 
     void print_matrix(uint8_t *matrix, int w, int h);
-END_INTERVIEW_NMS
+
+
+END_INTERVIEW_NS
 
 
 #endif //INTERVIEW_COMMON_H

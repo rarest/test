@@ -1,9 +1,9 @@
 //
 // Created by Chen Shuquan on 2020/5/11.
 //
-#include "reverse_stentence.h"
+#include "58_reverseSentence.h"
 
-BEGIN_INTERVIEW_NMS
+BEGIN_INTERVIEW_NS
 
     void reverse_region(char *pBegin, char *pEnd) {
         if (!pBegin || !pEnd) return;
@@ -21,14 +21,14 @@ BEGIN_INTERVIEW_NMS
         }
         pEnd--;
 
-        reverse_region(pBegin, pEnd);
+        reverseRegion(pBegin, pEnd);
         pBegin = pEnd = pData;
         while (*pBegin != '\0') {
             if (*pBegin == ' ') {
                 pBegin++;
                 pEnd++;
             } else if (*pEnd == ' ' || *pEnd == '\0') {
-                reverse_region(pBegin, --pEnd);
+                reverseRegion(pBegin, --pEnd);
                 pBegin = ++pEnd;
             } else {
                 pEnd++;
@@ -47,14 +47,14 @@ BEGIN_INTERVIEW_NMS
                 char* secondStart = pData + n;
                 char* secondEnd = pData + nLength - 1;
                 //翻转字符串的前面 n 个字符
-                reverse_region(firstStart, firstEnd);
+                reverseRegion(firstStart, firstEnd);
                 //翻转字符串的后面部分
-                reverse_region(secondStart, secondEnd);
+                reverseRegion(secondStart, secondEnd);
                 //翻转整个字符串
-                reverse_region(firstStart, secondEnd);
+                reverseRegion(firstStart, secondEnd);
             }
         }
 
         return pData;
     }
-END_INTERVIEW_NMS
+END_INTERVIEW_NS

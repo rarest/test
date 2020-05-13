@@ -1,6 +1,6 @@
 #include "common.h"
 
-BEGIN_INTERVIEW_NMS
+BEGIN_INTERVIEW_NS
 /**
  *
  * @param dst
@@ -8,7 +8,7 @@ BEGIN_INTERVIEW_NMS
  * @param w
  * @param h
  */
-void rotate90_clockwise(uint8_t *dst, const uint8_t * src, int w, int h);
+void rotate90Clockwise(uint8_t *dst, const uint8_t * src, int w, int h);
 /**
  *
  * @param dst
@@ -16,7 +16,7 @@ void rotate90_clockwise(uint8_t *dst, const uint8_t * src, int w, int h);
  * @param w
  * @param h
  */
-void rotate90_anticlockwise(uint8_t *dst, const uint8_t *src, int w, int h);
+void rotate90AntiClockwise(uint8_t *dst, const uint8_t *src, int w, int h);
 
 /**
  *
@@ -33,4 +33,4 @@ void rotate90_clockwise(uint8_t * src, int w, int h);
  * @param h
  */
 void rotate90_anticlockwise(uint8_t *src, int w, int h);
-END_INTERVIEW_NMS
+END_INTERVIEW_NS

@@ -1,9 +1,9 @@
 #include "rotate.h"
 #include "common.h"
 
-BEGIN_INTERVIEW_NMS
+BEGIN_INTERVIEW_NS
 
-void rotate90_clockwise(uint8_t *dst, const uint8_t *src, int w, int h) {
+void rotate90Clockwise(uint8_t *dst, const uint8_t *src, int w, int h) {
     if (!src) return;
     for (int i = 0; i < h; i++) {
         for (int j = 0; j < w; j++) {
@@ -12,7 +12,7 @@ void rotate90_clockwise(uint8_t *dst, const uint8_t *src, int w, int h) {
     }
 }
 
-void rotate90_anticlockwise(uint8_t *dst, const uint8_t *src, int w, int h) {
+void rotate90AntiClockwise(uint8_t *dst, const uint8_t *src, int w, int h) {
     if (!src) return;
     for (int i = 0; i < h; i++) {
         for (int j = 0; j < w; j++) {
@@ -34,4 +34,4 @@ void rotate90_clockwise(uint8_t *src, int w, int h) {
 void rotate90_anticlockwise(uint8_t *src, int w, int h) {
     if (!src) return;
 }
-END_INTERVIEW_NMS
+END_INTERVIEW_NS
