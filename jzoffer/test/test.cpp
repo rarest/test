@@ -6,7 +6,8 @@ BEGIN_INTERVIEW_NS
         return foo;
     }
 
-
-
+    void externFunction() {
+        printf("test extern function\n");
+    }
 
 END_INTERVIEW_NS
