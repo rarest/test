@@ -31,9 +31,7 @@ BEGIN_INTERVIEW_NS
         int _val = 0;
     };
 
-    extern Foo foo;
-
-    void printFoo();
+    Foo &getFoo();
 
 END_INTERVIEW_NS
 
