@@ -2,6 +2,8 @@
 
 USE_INTERVIEW_NS
 
+static Foo foo;
+
 int main() {
-    cout<<"test"<<endl;
+    cout << "test" << endl;
 }
