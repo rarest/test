@@ -5,14 +5,14 @@
 
 BEGIN_INTERVIEW_NS
 
-    void reverse_region(char *pBegin, char *pEnd) {
+    void reverseRegion(char *pBegin, char *pEnd) {
         if (!pBegin || !pEnd) return;
         while (pBegin < pEnd) {
             interview::swap(*pBegin++, *pEnd--);
         }
     }
 
-    char *reverse_sentence(char *pData) {
+    char* reverseSentence(char *pData) {
         if (!pData) return nullptr;
         char *pBegin = pData;
         char *pEnd = pData;
@@ -38,7 +38,7 @@ BEGIN_INTERVIEW_NS
     }
 
 
-    char*  left_rotate_string(char* pData, int n) {
+    char*  leftRotateString(char* pData, int n) {
         if(pData) {
             int nLength =  strlen(pData);
             if(nLength > 0 && n > 0 && n < nLength) {
