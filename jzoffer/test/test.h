@@ -33,6 +33,10 @@ BEGIN_INTERVIEW_NS
 
     Foo &getFoo();
 
+    inline void add() {
+        cout<<"add"<<endl;
+    }
+
 END_INTERVIEW_NS
 
 #endif

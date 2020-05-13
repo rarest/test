@@ -12,4 +12,5 @@ int main() {
     foo.setBar(5);
     printf("in main foo(%p) is %d\n", &foo, foo.getBar());
     printFoo();
+    add();
 }

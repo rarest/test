@@ -2,7 +2,6 @@
 
 BEGIN_INTERVIEW_NS
     static Foo foo;
-
     Foo &getFoo() {
         return foo;
     }
@@ -12,6 +11,7 @@ BEGIN_INTERVIEW_NS
         printf("in printFoo foo(%p) is %d\n", &foo, foo.getBar());
         foo.setBar(10);
         printf("in printFoo foo(%p) is %d\n", &foo, foo.getBar());
+        add();
     }
 
 
