@@ -33,8 +33,11 @@ BEGIN_INTERVIEW_NS
 
     Foo &getFoo();
 
-    inline void add() {
-        cout<<"add"<<endl;
+    inline void printFoo() {
+        Foo &foo = getFoo();
+        printf("in printFoo foo(%p) is %d\n", &foo, foo.getBar());
+        foo.setBar(10);
+        printf("in printFoo foo(%p) is %d\n", &foo, foo.getBar());
     }
 
 END_INTERVIEW_NS
