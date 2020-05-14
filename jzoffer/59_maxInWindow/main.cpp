@@ -12,7 +12,7 @@ vector<int> randomArray(int len, int seed) {
     e.seed(5);
     uniform_int_distribution<uint8_t> u(0, 100);
     vector<int> data, ret;
-    cout << "input: ";
+    cout << endl << "input: ";
     for (int i = 0; i < 10; i++) {
         int val = u(e);
         data.push_back(val);
@@ -43,22 +43,22 @@ void testMaxQueue() {
     data = randomArray(len, seed);
     MaxQueue<int> maxQueue;
 
-    cout << "output: " << endl;
+    cout << endl << "output: " << endl;
     for (int i = 0; i < data.size(); i++) {
         maxQueue.push_back(data[i]);
         int max = maxQueue.max();
         cout << "push: " << data[i] << " max: " << max << endl;
     }
-
+    cout << endl;
     for (int i = 0; i < data.size(); i++) {
+        int val = maxQueue.front();
+        maxQueue.pop_front();
+        cout << "pop: " << val;
         try {
-            int val = maxQueue.front();
-            maxQueue.pop_front();
             int max = maxQueue.max();
-            cout << "pop: " << val << " max: " << max << endl;
-
+            cout << " max: " << max << endl;
         } catch (std::runtime_error e) {
-            cout << "exception: " << e.what() << endl;
+            cout << endl << "exception: " << e.what() << endl;
         }
     }
 
