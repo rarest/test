@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 project (rotate)
-include_directories(. ../common)
+include_directories(. ../../common)
 aux_source_directory(. SRCS)
 add_executable(rotate ${SRCS})
 target_link_libraries(rotate common)

@@ -9,8 +9,8 @@
 #include <memory>
 #include <iostream>
 #include <iomanip>
-#include <Logger.h>
-#include <def.h>
+#include "Logger.h"
+#include "def.h"
 
 #ifdef LOGGING_ENABLED
 #define LOG(level, msg) interview::level(msg, __FILE__, __LINE__);
@@ -45,7 +45,6 @@ BEGIN_INTERVIEW_NS
     extern std::unique_ptr<ILogger> active_logger;
 
     void debug(const std::string &msg, const std::string &file, std::size_t line);
-
 
     void info(const std::string &msg, const std::string &file, std::size_t line);
 

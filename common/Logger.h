@@ -4,7 +4,8 @@
 
 #ifndef INTERVIEW_LOGGER_H
 #define INTERVIEW_LOGGER_H
-
+#include <string>
+#include <mutex>
 
 class ILogger {
 public:

@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.4.1)
-
 project(threadPool)
+include_directories(. ../../common)
 aux_source_directory(. SRCS)
-add_library(threadPool ${SRCS})
-
+add_executable(
+        threadPool ${SRCS})
+target_link_libraries(threadPool common)
