@@ -26,6 +26,7 @@ void ThreadPool3::stop() {
         std::unique_lock<std::mutex> lock(m_mutex);
         m_isStarted = false;
         m_condition.notify_all();
+
         LOG(debug, "thread_pool::stop() notifyAll().");
     }
     for (int i = 0; i < m_size; i++) {

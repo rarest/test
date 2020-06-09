@@ -1,6 +1,9 @@
 //
 // Created by Chen Shuquan on 2020/6/2.
 //
+#include <list>
+#include <unordered_map>
+using namespace std;
 
 struct Node {
     int key, val, freq;
