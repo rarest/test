@@ -4,23 +4,27 @@
 
 #ifndef INTERVIEW_LOGGER_H
 #define INTERVIEW_LOGGER_H
+
 #include <string>
 #include <mutex>
 
 class ILogger {
 public:
-    ILogger(void) = default;
+    ILogger() = default;
 
-    virtual ~ILogger(void) = default;
+    virtual ~ILogger() = default;
 
-    ILogger(const ILogger &) = default;
+    ILogger(const ILogger &) = delete;
 
-    ILogger &operator=(const ILogger &) = default;
+    ILogger &operator=(const ILogger &) = delete;
 
 public:
     virtual void debug(const std::string &msg, const std::string &file, std::size_t line) = 0;
+
     virtual void info(const std::string &msg, const std::string &file, std::size_t line) = 0;
+
     virtual void warn(const std::string &msg, const std::string &file, std::size_t line) = 0;
+
     virtual void error(const std::string &msg, const std::string &file, std::size_t line) = 0;
 };
 
@@ -35,18 +39,17 @@ public:
 
 public:
     explicit Logger(LogLevel level = LogLevel::info);
-    ~Logger(void) = default;
-    Logger(const Logger &) = default;
-    Logger &operator=(const Logger &) = default;
+
+    ~Logger() override = default;
 
 public:
-    void debug(const std::string &msg, const std::string &file, std::size_t line);
+    void debug(const std::string &msg, const std::string &file, std::size_t line) override;
 
-    void info(const std::string &msg, const std::string &file, std::size_t line);
+    void info(const std::string &msg, const std::string &file, std::size_t line) override;
 
-    void warn(const std::string &msg, const std::string &file, std::size_t line);
+    void warn(const std::string &msg, const std::string &file, std::size_t line) override;
 
-    void error(const std::string &msg, const std::string &file, std::size_t line);
+    void error(const std::string &msg, const std::string &file, std::size_t line) override;
 
 private:
     LogLevel m_level;
