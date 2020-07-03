@@ -1,8 +1,0 @@
-cmake_minimum_required(VERSION 3.4.1)
-project(jzoffer)
-add_subdirectory(test)
-add_subdirectory(random)
-add_subdirectory(rotate)
-add_subdirectory(24_reverseList)
-add_subdirectory(58_reverseSentence)
-add_subdirectory(59_maxInWindow)

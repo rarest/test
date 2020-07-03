@@ -9,4 +9,5 @@ int main() {
     header = reverseList(header);
     printListNode(header);
     deleteListNode(header);
+    return 0;
 }

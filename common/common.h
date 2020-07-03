@@ -18,9 +18,12 @@
 #define LOG(level, msg)
 #endif /* LOGGING_ENABLED */
 
+
 #define BEGIN_INTERVIEW_NS namespace interview {
 #define END_INTERVIEW_NS }
+
 #define USE_INTERVIEW_NS using namespace interview;
+
 using namespace std;
 BEGIN_INTERVIEW_NS
     template<class T>
@@ -53,6 +56,7 @@ BEGIN_INTERVIEW_NS
     void error(const std::string &msg, const std::string &file, std::size_t line);
 
 END_INTERVIEW_NS
+
 
 
 #endif //INTERVIEW_COMMON_H
