@@ -7,6 +7,7 @@
 #include "List.h"
 #include <vector>
 #include <memory>
+#include <functional>
 
 typedef std::unique_ptr<ListNode, std::function<void(ListNode *)>> ListNodePtr;
 typedef std::vector<ListNodePtr> ListNodePtrVector;
@@ -30,11 +31,6 @@ void testPrintListFromEnd() {
         listNodePtrVector.emplace_back(std::move(listNodePtr));
         endNode->m_pNext = listNodePtrVector[i].get();
         endNode = endNode->m_pNext;
-//        ListNode *node = new ListNode;
-//        node->m_nValue = i;
-//        node->m_pNext = nullptr;
-//        endNode->m_pNext = node;
-//        endNode = endNode->m_pNext;
     }
     PrintList(preHead.m_pNext);
     printListNodeFromEnd(preHead.m_pNext);
