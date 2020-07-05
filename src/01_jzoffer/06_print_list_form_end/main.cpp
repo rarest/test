@@ -13,7 +13,7 @@ typedef std::vector<ListNodePtr> ListNodePtrVector;
 
 ListNodePtr createListNodePtr(int val) {
     ListNodePtr ptr(new ListNode, [](ListNode *node) {
-        printf("delete ListNode %d", node->m_nValue);
+        printf("delete ListNode %d\n", node->m_nValue);
         delete node;
     });
 
@@ -34,7 +34,7 @@ void testPrintListFromEnd() {
 //        node->m_nValue = i;
 //        node->m_pNext = nullptr;
 //        endNode->m_pNext = node;
-        endNode = endNode->m_pNext;
+//        endNode = endNode->m_pNext;
     }
     PrintList(preHead.m_pNext);
     printListNodeFromEnd(preHead.m_pNext);
