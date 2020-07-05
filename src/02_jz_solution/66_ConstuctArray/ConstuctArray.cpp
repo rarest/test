@@ -18,6 +18,7 @@ https://github.com/zhedahht/CodingInterviewChinese2/blob/master/LICENSE.txt)
 
 #include <cstdio>
 #include <vector>
+#include <math.h>
 
 using namespace std;
 
