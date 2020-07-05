@@ -17,7 +17,7 @@ https://github.com/zhedahht/CodingInterviewChinese2/blob/master/LICENSE.txt)
 // 结点被删除之后，链表如图3.4（b）所示。
 
 #include <cstdio>
-#include "list.h"
+#include "List.h"
 
 void DeleteDuplication(ListNode** pHead)
 {
