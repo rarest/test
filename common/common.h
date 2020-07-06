@@ -5,7 +5,7 @@
 #ifndef INTERVIEW_COMMON_H
 #define INTERVIEW_COMMON_H
 
-#include <stdint.h>
+#include <cstdint>
 #include <memory>
 #include <iostream>
 #include <iomanip>

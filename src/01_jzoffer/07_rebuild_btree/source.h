@@ -6,12 +6,9 @@
 #define INTERVIEW_SOURCE_H
 
 #include "common.h"
+#include "BinaryTree.h"
 
-struct BinaryTreeNode {
-    int m_nValue;
-    BinaryTreeNode* m_pLeft;
-    BinaryTreeNode* m_pRight;
-};
+BinaryTreeNode* rebuildCore( int* startPreOrder,  int * endPreOrder, int* startInOrder,  int* endInOrder);
 
 BinaryTreeNode* rebuild(int* preOrder, int*middleOrder, int length);
 
