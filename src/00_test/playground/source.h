@@ -6,5 +6,9 @@
 #define INTERVIEW_SOURCE_H
 
 #include "common.h"
+#include "List.h"
+
+ListNode* reverseList(ListNode *head);
+
 
 #endif //INTERVIEW_SOURCE_H
