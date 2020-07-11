@@ -7,4 +7,11 @@
 
 #include "common.h"
 
+
+int moveCount(int threshold, int rows, int cols);
+
+
+
+
+
 #endif //INTERVIEW_SOURCE_H
