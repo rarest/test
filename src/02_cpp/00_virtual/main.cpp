@@ -19,6 +19,8 @@ int main() {
     }
 
     MultiDerived multiDerived;
+
+    FUN  ptr = (FUN)*((intptr_t*)*(intptr_t*)(&b)+0);
     intptr_t **ppvtb = (intptr_t **) &multiDerived;
     FUN func = nullptr;
     func = (FUN) ppvtb[0][0];
