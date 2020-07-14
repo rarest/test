@@ -31,6 +31,7 @@ int main() {
     func();
     func = (FUN) ppvtb[0][4];
     cout << func << endl;
+    printf("%#X\n", ppvtb[0][4]);
 
     func = (FUN) ppvtb[1][0];
     func();
@@ -40,6 +41,7 @@ int main() {
     func();
     func = (FUN) ppvtb[1][3];
     cout << func << endl;
+    printf("%#X\n", ppvtb[1][3]);
 
     func = (FUN) ppvtb[2][0];
     func();
@@ -49,7 +51,7 @@ int main() {
     func();
     func = (FUN) ppvtb[2][3];
     cout << func << endl;
-
+    printf("%#X\n", ppvtb[2][3]);
 
 
 
