@@ -4,23 +4,33 @@
 
 #include "common.h"
 #include "source.h"
+#include <typeinfo>
 
 typedef void(*FUN)(void);
+
+
+void printVTable(intptr_t *vtb, int n) {
+    if (!vtb) return;
+
+    printf("vtb: %p\n", vtb);
+    for (int i = 0; i < n; i++) {
+        printf("func: %d: %#x->", i, vtb[i]);
+        FUN f = (FUN) vtb[i];
+        f();
+    }
+    printf("\n");
+}
 
 int main() {
     Base b;
 
-    intptr_t *vtb = *(intptr_t **) &b;
-    FUN f = nullptr;
-    for (int i = 0; i < 3; i++) {
-        f = (FUN) vtb[i];
-        cout << f << endl;
-        f();
-    }
+    intptr_t *vtb = (intptr_t *) *(intptr_t *) &b;
+    printVTable(vtb, 3);
+    Derived d;
+    vtb = ((intptr_t *) *(intptr_t *) (&d) + 0);
+    printVTable(vtb, 6);
 
     MultiDerived multiDerived;
-
-    FUN  ptr = (FUN)*((intptr_t*)*(intptr_t*)(&b)+0);
     intptr_t **ppvtb = (intptr_t **) &multiDerived;
     FUN func = nullptr;
     func = (FUN) ppvtb[0][0];
@@ -54,7 +64,6 @@ int main() {
     func = (FUN) ppvtb[2][3];
     cout << func << endl;
     printf("%#X\n", ppvtb[2][3]);
-
 
 
     Base *base = new Derived();

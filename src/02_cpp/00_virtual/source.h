@@ -52,8 +52,6 @@ private:
 
 class Derived : public Base {
 public:
-    virtual  ~Derived() {}
-
     void d() { printf("Derived::d()\n"); }
 
     void f(int a) { printf("Derived::f() %d,\n", a); }
@@ -63,6 +61,8 @@ public:
     virtual void g1() { printf("Derived::g1()\n"); }
 
     virtual void h1() { printf("Derived::h1()\n"); }
+
+
 };
 
 
