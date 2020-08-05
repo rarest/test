@@ -2,8 +2,8 @@
 // Created by Chen Shuquan on 2020/5/13.
 //
 
-#ifndef INTERVIEW_THREADPOOL_H
-#define INTERVIEW_THREADPOOL_H
+#ifndef INTERVIEW_THREADPOOL1_H
+#define INTERVIEW_THREADPOOL1_H
 
 #include <mutex>
 #include <condition_variable>
@@ -13,17 +13,17 @@
 #include <vector>
 #include <queue>
 
-class ThreadPool {
+class ThreadPool1 {
 public:
-    ~ThreadPool() = default;
+    ~ThreadPool1() = default;
     void start();
     void addJob(std::function<void()> job);
     void waitFinish();
     bool taskRunning();
-    static ThreadPool *getInstance();
+    static ThreadPool1 *getInstance();
 
 private:
-    ThreadPool();
+    ThreadPool1();
     unsigned int threadNum;
     std::vector<std::thread > pool;
     std::atomic<bool> alive;
@@ -38,9 +38,9 @@ private:
     std::condition_variable taskCondition;
 
     void workingFunction();
-    static ThreadPool *instance;
+    static ThreadPool1 *instance;
     static std::mutex instanceMutex;
 };
 
 
-#endif //INTERVIEW_THREADPOOL_H
+#endif //INTERVIEW_THREADPOOL1_H

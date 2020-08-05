@@ -2,7 +2,7 @@
 // Created by Chen Shuquan on 2020/5/13.
 //
 
-#include "threadPool.h"
+#include "threadPool1.h"
 
 
 #include <thread>
@@ -10,23 +10,23 @@
 #include <mutex>
 
 static std::once_flag g_once_flag;
-ThreadPool *ThreadPool::instance = nullptr;
-std::mutex ThreadPool::instanceMutex;
+ThreadPool1 *ThreadPool1::instance = nullptr;
+std::mutex ThreadPool1::instanceMutex;
 
-void ThreadPool::start() {
+void ThreadPool1::start() {
     if (alive || runningJobs > 0 || aliveThreads > 0) return;
     pool.clear();
     alive = true;
     aliveThreads = 0;
     printf("threading pool size %u\n", threadNum);
     for (decltype(threadNum) ii = 0; ii < threadNum; ii++) {
-        pool.emplace_back(std::thread(&ThreadPool::workingFunction, this));
+        pool.emplace_back(std::thread(&ThreadPool1::workingFunction, this));
         aliveThreads += 1;
     }
 
 }
 
-void ThreadPool::addJob(std::function<void()> job) {
+void ThreadPool1::addJob(std::function<void()> job) {
     if (!alive) return;
     {
         std::unique_lock<std::mutex> lock(quequeMutex);
@@ -36,21 +36,21 @@ void ThreadPool::addJob(std::function<void()> job) {
 
 }
 
-void ThreadPool::waitFinish() {
+void ThreadPool1::waitFinish() {
     std::unique_lock<std::mutex> lock(taskMutex);
     taskCondition.wait(lock, [this] { return !taskRunning(); });
 }
 
-bool ThreadPool::taskRunning() {
+bool ThreadPool1::taskRunning() {
     return runningJobs > 0 || !queue.empty();
 }
 
-ThreadPool *ThreadPool::getInstance() {
-    std::call_once(g_once_flag, [&]() { instance = new ThreadPool();});
+ThreadPool1 *ThreadPool1::getInstance() {
+    std::call_once(g_once_flag, [&]() { instance = new ThreadPool1();});
     return instance;
 }
 
-void ThreadPool::workingFunction() {
+void ThreadPool1::workingFunction() {
     std::unique_lock<std::mutex> lock(quequeMutex);
     while (true) {
         if (!queue.empty()) {
@@ -80,8 +80,8 @@ void ThreadPool::workingFunction() {
 }
 
 
-ThreadPool::ThreadPool() : threadNum(std::thread::hardware_concurrency()), alive(false), runningJobs(0),
-                           aliveThreads(0) {
+ThreadPool1::ThreadPool1() : threadNum(std::thread::hardware_concurrency()), alive(false), runningJobs(0),
+                             aliveThreads(0) {
     start();
 }
 

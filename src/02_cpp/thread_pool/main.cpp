@@ -3,6 +3,8 @@
 //
 
 #include "ThreadPool3.h"
+#include "threadPool1.h"
+#include "threadpool.h"
 
 using namespace interview;
 
@@ -50,11 +52,51 @@ void testThreadPool32() {
 }
 
 
+void testTreadPool() {
+    ThreadPool pool(4);
+    std::vector< std::future<int> > results;
+
+    for(int i = 0; i < 8; ++i) {
+        results.emplace_back(
+                pool.enqueue([i] {
+                    std::cout << "hello " << i << std::endl;
+                    std::this_thread::sleep_for(std::chrono::seconds(1));
+                    std::cout << "world " << i << std::endl;
+                    return i*i;
+                })
+        );
+    }
+
+    for(auto && result: results)
+        std::cout << result.get() << ' ';
+    std::cout << std::endl;
+
+}
+
+
+void fun(int i) {
+    printf("log %d", i);
+}
+
+void fun(int *i) {
+    printf("log point %p", i);
+}
+
 int main() {
 
-    testThreadPool31();
-    testThreadPool32();
-    LOG(error,"test error");
+    int *pi = NULL;
+    char *pc = NULL;
+    NULL;
+//    fun(NULL);
+    testTreadPool();
+
+//    int a = 0x12345678;
+//    char *p = reinterpret_cast<char *>(&a);
+//    printf("%x %x %x %x %x\n", a, p[0], p[1], p[2], p[3]);
+
+//    testThreadPool31();
+//    testThreadPool32();
+//    LOG(error, "test error");
 
     return 0;
 }
