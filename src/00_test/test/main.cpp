@@ -13,6 +13,7 @@ USE_INTERVIEW_NS
 #include <cerrno>
 #include <vector>
 #include <string>
+#include <unordered_map>
 
 void testIO() {
     int intVal = 10;
@@ -36,6 +37,27 @@ void testIO() {
     fread(&dv, sizeof(double), 1, rf);
     fclose(rf);
     printf("output %d, %f %f\n", iv, fv, dv);
+}
+
+
+char findLastSingleChar(const char *data) {
+    if (!data) throw std::invalid_argument("no match");
+    int lenth = strlen(data);
+    std::unordered_map<char, int> charNums;
+    for (int i = 0; i < lenth; i++) {
+        char c = data[i];
+        auto itr = charNums.find(c);
+        if (itr != charNums.end()) {
+            itr->second++;
+        } else {
+            charNums[c] = 1;
+        }
+    }
+    for (int i = lenth - 1; i >= 0; i--) {
+        if (charNums[data[i]] == 1)
+            return data[i];
+    }
+    throw std::invalid_argument("not match");
 }
 
 
