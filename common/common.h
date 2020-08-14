@@ -19,6 +19,49 @@
 #endif /* LOGGING_ENABLED */
 
 
+#define SINGLETON_CTOR(x) \
+     protected:\
+            x() = default;\
+            x(const x&)=delete;\
+            x& operator=(const x&)=delete;\
+            virtual ~x()=default;
+
+
+#define SINGLETON_INSTACNCE(x) SINGLETON_CTOR(x)\
+    public:\
+    static x* Instance()\
+    {static x _instance; return &_instance;}
+
+
+template<typename T>  //T 是子类
+class SingletonBase {
+SINGLETON_CTOR(SingletonBase);  //这个还是可以用的
+public:
+    static T &Instance() {
+        static T t;   //饿汉式
+        return t;
+    }
+};
+
+//再加上今天的学习的std::once_call实现懒汉式
+template<typename T>  //T 是子类
+class SingletonBaseLazy {
+
+SINGLETON_CTOR(SingletonBaseLazy);  //这个还是可以用的
+public:
+    static T* Instance() {
+        static std::once_flag flag;
+        std::call_once(flag, [&]() { _ptr.reset( new T); });
+        return _ptr.get();
+    }
+
+    static std::unique_ptr<T> _ptr;
+};
+
+template<typename T>
+std::unique_ptr<T> SingletonBaseLazy<T>::_ptr;
+
+
 #define BEGIN_INTERVIEW_NS namespace interview {
 #define END_INTERVIEW_NS }
 
@@ -56,7 +99,6 @@ BEGIN_INTERVIEW_NS
     void error(const std::string &msg, const std::string &file, std::size_t line);
 
 END_INTERVIEW_NS
-
 
 
 #endif //INTERVIEW_COMMON_H
