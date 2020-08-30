@@ -8,7 +8,7 @@ using std::default_random_engine;
 using std::uniform_int_distribution;
 
 int randInRange(int start, int end) {
-    return rand()%(end-start + 1) + start;
+    return rand() % (end - start + 1) + start;
 }
 
 int main() {
@@ -22,7 +22,7 @@ int main() {
 //    return 0;
 
     srand(time(NULL));
-    for(int i = 0; i < 100; i++) {
-        printf("%d\n", randInRange(3,10));
+    for (int i = 0; i < 100; i++) {
+        printf("%d\n", randInRange(3, 10));
     }
 }
