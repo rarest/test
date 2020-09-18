@@ -23,6 +23,9 @@ void printVTable(intptr_t *vtb, int n) {
 
 int main() {
     Base b;
+    EmptyChild ec;
+    EmptyChildVirturl ecv;
+    printf("size of ec %d ecv %d\n",sizeof(ec),sizeof(ecv));
 
     intptr_t *vtb = (intptr_t *) *(intptr_t *) &b;
     printVTable(vtb, 3);

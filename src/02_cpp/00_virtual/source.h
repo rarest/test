@@ -11,6 +11,17 @@ class Empty {
 
 };
 
+class EmptyChild {
+    Empty a;
+};
+
+class EmptyChildVirturl {
+    Empty a;
+
+    virtual void test(){}
+};
+
+
 class OneFunction {
 private:
     void f() {}
