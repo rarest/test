@@ -12,6 +12,11 @@
 #include "Logger.h"
 #include "def.h"
 
+#define __format__(__fmt__) "[%s][%s][%d]: " __fmt__ "\n"
+
+#define __log__(args...) fprintf(stderr, args)
+#define Log(format, args...) __log__(__format__(format), __FILE__, __FUNCTION__ ,__LINE__, ##args)
+
 #ifdef LOGGING_ENABLED
 #define LOG(level, msg) interview::level(msg, __FILE__, __LINE__);
 #else
@@ -49,9 +54,9 @@ class SingletonBaseLazy {
 
 SINGLETON_CTOR(SingletonBaseLazy);  //这个还是可以用的
 public:
-    static T* Instance() {
+    static T *Instance() {
         static std::once_flag flag;
-        std::call_once(flag, [&]() { _ptr.reset( new T); });
+        std::call_once(flag, [&]() { _ptr.reset(new T); });
         return _ptr.get();
     }
 
