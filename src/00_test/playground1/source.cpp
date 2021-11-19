@@ -3,15 +3,21 @@
 //
 
 #include "source.h"
+#include "common.h"
 
-ListNode *reverseList(ListNode *head) {
-    ListNode *nHead = nullptr;
-    ListNode *cur = head;
-    while (cur) {
-        ListNode *next = cur->m_pNext;
-        cur->m_pNext = nHead;
-        nHead = cur;
-        cur = next;
-    }
-    return nHead;
+struct B {
+};
+struct D : B {
+
+};
+
+void f(B *) {
+    Log("B");
 }
+
+void f(void *) {
+    Log("void*");
+}
+
+// calls f(B*)
+void test(D *x) { f(x); }

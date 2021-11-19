@@ -8,9 +8,15 @@
 #include "common.h"
 #include "List.h"
 
-ListNode* reverseList(ListNode *head);
 
+struct B;
+struct D;
 
+void f(B *);
+
+void f(void *);
+
+void test(D *x);
 
 
 #endif //INTERVIEW_SOURCE_H
