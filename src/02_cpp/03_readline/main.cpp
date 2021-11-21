@@ -28,7 +28,7 @@ static inline std::string &trim(std::string &s) {
 
 
 int main() {
-    const char* filePath = "../src/02_cpp/readline/meta.conf";
+    const char* filePath = "../src/02_cpp/03_readline/meta.conf";
     std::ifstream is_file(filePath);
 //    std::istringstream is_file2(data);
     std::map<std::string, std::string> kv;

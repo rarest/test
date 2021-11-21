@@ -6,7 +6,17 @@ if (NOT CMAKE_BUILD_TYPE)
     SET(CMAKE_BUILD_TYPE Debug CACHE STRING "Choose the type of build (Debug or Release)" FORCE)
 endif (NOT CMAKE_BUILD_TYPE)
 
-list(APPEND CMAKE_CXX_FLAGS "-std=c++14")
+#关闭编译器优化选项
+#list(APPEND CMAKE_CXX_FLAGS "-std=c++14 -fno-elide-constructors")
+#list(APPEND CMAKE_CXX_FLAGS "-std=c++14")
+
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+#关闭编译器优化选项
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-elide-constructors")
+#关闭编译器优化选项
+set(CMAKE_CXX_FLAGS "-std=c++14 -fno-elide-constructors ${CMAKE_CXX_FLAGS}")
+
+
 
 #make libs
 macro(make_lib libname dir)
