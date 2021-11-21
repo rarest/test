@@ -3,33 +3,27 @@
 //
 
 #include "common.h"
-#include "../forwardStatment/source.h"
 #include <memory>
 
 struct Foo { // object to manage
-    Foo() { std::cout << "Foo ctor\n"; }
+    Foo() {
+        Log("Foo ctor: %p", this);
+    }
 
-    Foo(const Foo &) { std::cout << "Foo copy ctor\n"; }
+    Foo(const Foo &foo) {
+        Log("Foo copy ctor: %p <- %p", this, &foo);
+    }
 
-    Foo(Foo &&) { std::cout << "Foo move ctor\n"; }
+    Foo(Foo && foo) {
+        Log("Foo move ctor: %p <- %p", this, &foo);
+    }
 
-    ~Foo() { std::cout << "~Foo dtor\n"; }
+    ~ Foo() {
+        Log("Foo dtor: %p", this);
+    }
+
 };
 
-struct D { // deleter
-    D() {};
-
-    D(const D &) { std::cout << "D copy ctor\n"; }
-
-    D(D &) { std::cout << "D non-const copy ctor\n"; }
-
-    D(D &&) { std::cout << "D move ctor \n"; }
-
-    void operator()(Foo *p) const {
-        std::cout << "D is deleting a Foo\n";
-        delete p;
-    };
-};
 
 Foo &&getFoo() {
     return Foo();
@@ -49,17 +43,53 @@ Foo getFoo3() {
 
 int main() {
 
+    //Foo ctor
+    //~Foo dtor
+    //Foo move ctor
+    Log("Foo foo = getFoo();");
     Foo foo = getFoo();
+    //Foo ctor
+    //~Foo dtor
+    //Foo move ctor
+    Log("\nFoo foo1 = getFoo1();");
     Foo foo1 = getFoo1();
+    //Foo ctor
+    //Foo move ctor
+    //~Foo dtor
+    //Foo move ctor
+    //~Foo dtor
+    Log("\nFoo foo2 = getFoo2();");
     Foo foo2 = getFoo2();
-    Foo&& foo3 = getFoo3();
-    Foo  foo4 = foo3;
+
+    //Foo ctor
+    //Foo move ctor
+    //~Foo dtor
+    Log("\nFoo&& foo3 = getFoo3();");
+    Foo &&foo3 = getFoo3();
+
+    //Foo ctor
+    //Foo move ctor
+    //~Foo dtor
+    //Foo copy ctor
+    Log("\nFoo  foo4 = foo3;");
+    Foo foo4 = foo3;
     {
-        Log("临时变量释放");
+        Log("\n临时变量释放");
+        //Foo ctor
+        //Foo move ctor
+        //~Foo dtor
+        //~Foo dtor
+        Log("getFoo3();");
         getFoo3();
+        //Foo ctor
+        //Foo move ctor
+        //~Foo dtor
+        //Foo move ctor
+        //~Foo dtor
+        Log("\nFoo foo5 = getFoo3();");
         Foo foo5 = getFoo3();
     }
 
-    Log("end");
+    Log("\nend");
     return 0;
 }
