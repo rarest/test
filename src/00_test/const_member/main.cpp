@@ -63,7 +63,31 @@ int test(const Foo *foo) {
     return foo->getVal();
 }
 
+class A {
+};
+
+class B {
+    virtual void func() {}
+};
+
+class C {
+    static int a;
+};
+
+int C::a = 0;
+
+class D {
+    int a;
+};
+
+class E {
+    static int a;
+    int b;
+};
+
 int main() {
+    Log("sizeof(A) %lu sizeof(B) %lu sizeof(C) %lu sizeof(D) %lu", sizeof(A), sizeof(B), sizeof(C), sizeof(D));
+
     Foo foo5;
     foo5.getVal();
     Foo foo(1), foo1(1);
@@ -76,4 +100,10 @@ int main() {
     bar.setValVirtual(1);
     Foo *foo4 = &bar;
     foo4->setVal(11);
+    int i = 10, b = 5;
+    const int *i1 = &i;
+    int *const i2 = &i;
+    i1 = &b;
+    *i2 = b;
+
 }
