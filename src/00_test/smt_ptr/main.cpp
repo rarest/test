@@ -7,7 +7,8 @@
 #include "smart_ptr.h"
 
 int main() {
-
+int *p1 = new int;
+int *p2 = new int();
 
 
 //    std::unique_ptr <std::string> p1(new std::string("auto ptr!"));

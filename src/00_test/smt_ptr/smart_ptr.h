@@ -4,6 +4,7 @@
 
 #ifndef CPPTEST_SMART_PTR_H
 #define CPPTEST_SMART_PTR_H
+
 #include "common.h"
 
 template<class T>
@@ -86,5 +87,53 @@ private:
     T *ptr_;
     size_t *count_;
 };
+
+template<class T>
+class CUniquePtr {
+public:
+    explicit CUniquePtr(T *ptr) : ptr_(ptr) {}
+
+    ~CUniquePtr() {
+        if (ptr_) {
+            delete ptr_;
+            ptr_ = nullptr;
+        }
+    }
+
+    CUniquePtr(const CUniquePtr &ptr) = delete;
+
+    CUniquePtr &operator=(const CUniquePtr &ptr) = delete;
+
+    CUniquePtr(CUniquePtr &&ptr) noexcept;
+
+    CUniquePtr &operator=(CUniquePtr &&ptr) noexcept;
+
+    T &operator*() const {
+        return *ptr_;
+    }
+
+    T *operator->() const {
+        return ptr_;
+    }
+
+    void swap(CUniquePtr &ptr) noexcept {
+        std::swap(ptr_, ptr, ptr_);
+    }
+
+private:
+    T *ptr_;
+};
+
+template<class T>
+CUniquePtr<T>::CUniquePtr(CUniquePtr &&ptr) noexcept:ptr_(ptr.ptr_) {
+    ptr.ptr_ = nullptr;
+}
+
+
+template<class T>
+CUniquePtr<T> &CUniquePtr<T>::operator=(CUniquePtr &&ptr) noexcept {
+    swap(ptr);
+    return *this;
+}
 
 #endif //CPPTEST_SMART_PTR_H
