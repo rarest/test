@@ -64,29 +64,85 @@ int test(const Foo *foo) {
 }
 
 class A {
+public:
+    A() {
+        Log("A ctor");
+    }
+
+    ~A() {
+        Log("A dtor");
+    }
 };
 
 class B {
+public:
+    B() {
+        Log("B ctor");
+    }
+
+    ~B() {
+        Log("B dtor");
+    }
+
     virtual void func() {}
 };
 
 class C {
+public:
+    C() {
+        Log("C ctor");
+    }
+
+    ~C() {
+        Log("C dtor");
+    }
+
     static int a;
 };
 
 int C::a = 0;
 
 class D {
+public:
+    D() {
+        Log("D ctor");
+    }
+
+    ~D() {
+        Log("D dtor");
+    }
+
     int a;
 };
 
 class E {
-    static int a;
-    int b;
+public:
+    E() : c(new C()), d(new D()) {
+        Log("E ctor");
+    }
+
+    ~E() {
+        Log("E dtor");
+        delete c;
+        delete d;
+        c = nullptr;
+        d = nullptr;
+    }
+
+    static int m;
+    int n;
+private:
+    D *d;
+    C *c;
+    B b;
+    A a;
+
 };
 
 int main() {
-    Log("sizeof(A) %lu sizeof(B) %lu sizeof(C) %lu sizeof(D) %lu", sizeof(A), sizeof(B), sizeof(C), sizeof(D));
+    E e;
+    Log("sizeof(A) %lu sizeof(B) %lu sizeof(C) %lu sizeof(D) %lu sizeof(E) %lu", sizeof(A), sizeof(B), sizeof(C), sizeof(D),
+        sizeof(e));
 
     Foo foo5;
     foo5.getVal();
