@@ -4,7 +4,10 @@
 #include "common.h"
 #include "CMyString.h"
 #include "RValue.h"
+
 #include <vector>
+
+#include "../../00_test/smt_ptr/smart_ptr.h"
 
 int test1() {
     std::vector<CMyString> strArray;
@@ -125,12 +128,26 @@ A GetA() {
 }
 
 int main() {
+    CMyString *myString = new CMyString("hello world");
+    CSharedPtr<CMyString> p1 = myString;
+    Log("p1 use_count: %lu", p1.useCount());
+    CSharedPtr<CMyString> p2 = p1;
+    Log("p1 use_count: %lu p2 use_count %lu", p1.useCount(), p2.useCount());
+    CSharedPtr<CMyString> p3 = std::move(p2);
+    Log("p1 use_count: %lu p2 use_count %lu p3 use_count %lu", p1.useCount(), p2.useCount(), p3.useCount());
+    p3 = std::move(p1);
+    Log("p1 use_count: %lu p2 use_count %lu p3 use_count %lu", p1.useCount(), p2.useCount(), p3.useCount());
+    CSharedPtr<CMyString> p4 = new CMyString("new str");
+    p3 = p4;
+    Log("p1 use_count: %lu p2 use_count %lu p3 use_count %lu p4 use_count %Lu", p1.useCount(), p2.useCount(),
+        p3.useCount(), p4.useCount());
+
 //    test1();
 //    test2();
 //    test3();
 //    test4();
 //    test5();
     A a = GetA();
-    A&& aa = GetA();
+    A &&aa = GetA();
     return 0;
 }

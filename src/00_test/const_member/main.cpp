@@ -139,9 +139,40 @@ private:
 
 };
 
+class CStackOnly {
+private:
+    void *operator new(unsigned long size) {
+        Log("CstackOnly new");
+    }
+
+    void operator delete(void *ptr) {
+        Log("CstackOnly delete");
+    }
+};
+class CHeapOnly {
+public:
+    CHeapOnly(){
+        Log("CHeapOnly ctor");
+    }
+
+private:
+    ~CHeapOnly(){
+        Log("CHeapOnly dtor");
+    }
+};
+
 int main() {
+    CStackOnly stackOnly;
+    //'operator delete' is a private member of 'CStackOnly'
+//    CStackOnly *stackOnly1 = new CStackOnly();
+
+//    CHeapOnly heapOnly;
+    CHeapOnly *heapOnly1 = new CHeapOnly();
+
+
     E e;
-    Log("sizeof(A) %lu sizeof(B) %lu sizeof(C) %lu sizeof(D) %lu sizeof(E) %lu", sizeof(A), sizeof(B), sizeof(C), sizeof(D),
+    Log("sizeof(A) %lu sizeof(B) %lu sizeof(C) %lu sizeof(D) %lu sizeof(E) %lu", sizeof(A), sizeof(B), sizeof(C),
+        sizeof(D),
         sizeof(e));
 
     Foo foo5;
