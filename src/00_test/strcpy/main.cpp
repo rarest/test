@@ -88,6 +88,28 @@ auto func = []() {
 };
 int c = func();
 
+
+bool isLittleEndian() {
+    int i = 1;
+    return *(char *) (&i) == 1;
+}
+
+bool isLittleEndian2() {
+    union check{
+        int i;
+        char ch;
+    } a{};
+    a.i = 1;
+    return a.ch == 1;
+}
+
+void test11() {
+    int a[5] = {1, 2, 3, 4, 5};
+    int *ptr1 = (int *) (&a + 1);
+    int *ptr2 = (int *) ((int *) a + 1);
+    printf("%x,%x", ptr1[-1], *ptr2);
+}
+
 int main() {
     Log("main");
     char dst[32];
@@ -100,4 +122,14 @@ int main() {
 
     ret = strstr(dst + 1, src);
     Log("strstr ret: %s", ret);
+
+    int x = 0x12345678;
+    char *c = (char *) &x;
+    Log("%x: %x %x %x %x %lu %d %d",x, c[0], c[1], c[2], c[3], sizeof(x), isLittleEndian(), isLittleEndian2());
+    if (c[0] == 0x78) {
+        Log("little endian");
+    } else if (c[0] == 0x12) {
+        Log("big endian");
+    }
+
 }
