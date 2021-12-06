@@ -29,7 +29,6 @@ int main() {
 
     SingletonTest111::Instance().test();
     SingletonSample::Instance().test();
-//    SingletonTest * p = SingletonTest::Instance();
-//    delete p;
+    Singleton *singleton = Singleton::instance();
     return 0;
 }

@@ -94,7 +94,7 @@ void testCallOnce() {
 }
 
 
-struct BoundedBuffer {
+struct RingBuffer {
     std::unique_ptr<int[]> buffer;
     int capacity;
     int front;
@@ -105,11 +105,11 @@ struct BoundedBuffer {
     std::condition_variable not_full;
     std::condition_variable not_empty;
 
-    BoundedBuffer(int capacity_) : capacity(capacity_), front(0), rear(0), count(0) {
+    RingBuffer(int capacity_) : capacity(capacity_), front(0), rear(0), count(0) {
         buffer = std::make_unique<int[]>(capacity);
     }
 
-    ~BoundedBuffer() {}
+    ~RingBuffer() {}
 
     void deposit(int data) {
         std::unique_lock<decltype(lock)> l(lock);
@@ -134,7 +134,7 @@ struct BoundedBuffer {
 
 };
 
-void consumer(int id, BoundedBuffer &buffer) {
+void consumer(int id, RingBuffer &buffer) {
     for (int i = 0; i < 50; i++) {
         int value = buffer.fetch();
         std::cout << "Consumer " << id << " fetched " << value << std::endl;
@@ -142,7 +142,7 @@ void consumer(int id, BoundedBuffer &buffer) {
     }
 }
 
-void producer(int id, BoundedBuffer &buffer) {
+void producer(int id, RingBuffer &buffer) {
     for (int i = 0; i < 75; ++i) {
         buffer.deposit(i);
         std::cout << "Produced " << id << " produced" << i << std::endl;
@@ -151,7 +151,7 @@ void producer(int id, BoundedBuffer &buffer) {
 }
 
 void testProduceConsume() {
-    BoundedBuffer buffer(200);
+    RingBuffer buffer(200);
     std::thread c1(consumer, 0, std::ref(buffer));
     std::thread c2(consumer, 1, std::ref(buffer));
     std::thread c3(consumer, 2, std::ref(buffer));
