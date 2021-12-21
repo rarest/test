@@ -7,6 +7,10 @@
 
 #include "common.h"
 
+
+//https://blog.csdn.net/RaKiRaKiRa/article/details/94991797
+//https://blog.csdn.net/daxiang10m/article/details/106246839
+
 template<class T>
 class CSharedPtr {
 public:

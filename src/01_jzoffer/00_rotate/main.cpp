@@ -1,9 +1,10 @@
 #include "rotate.h"
 #include "common.h"
+
 USE_INTERVIEW_NS
+
 int main() {
     int h = 4, w = 5;
-
     Log("origin matrix");
     shared_ptr<uint8_t> data = init_matrix(w, h);
     print_matrix(data.get(), w, h);
@@ -32,7 +33,7 @@ int main() {
     rotate90_clockwise(data.get(), w, h);
     print_matrix(data.get(), h, w);
     Log("rotate matrix rotate90_anticlockwise");
-    rotate90_anticlockwise(data.get(), h,w);
+    rotate90_anticlockwise(data.get(), h, w);
     print_matrix(data.get(), w, h);
 
 }
