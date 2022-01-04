@@ -17,8 +17,8 @@ struct Node {
 class LFUCache {
 private:
     int minfreq, capacity;
-    unordered_map<int, list<Node>::iterator> key_table;
-    unordered_map<int, list<Node>> freq_table;
+    std::unordered_map<int, std::list<Node>::iterator> key_table;
+    std::unordered_map<int, std::list<Node>> freq_table;
 public:
     LFUCache(int _capacity);
 

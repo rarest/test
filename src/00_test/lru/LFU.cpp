@@ -1,7 +1,7 @@
 //
 // Created by Chen Shuquan on 2020/6/2.
 //
-#include "LRU.h"
+#include "LFU.h"
 using namespace std;
 
 LFUCache::LFUCache(int _capacity) {
