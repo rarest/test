@@ -4,6 +4,12 @@
 
 #ifndef CPPTEST_LRU_H
 #define CPPTEST_LRU_H
+#include <map>
+#include <unordered_map>
+#include <list>
+#include <utility>
+
+using namespace std;
 
 class LRUCache{
 public:
