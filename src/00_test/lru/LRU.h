@@ -27,7 +27,8 @@ public:
         if(it != hash.end())
         {
             it->second->second = value;
-            return cache.splice(cache.begin(), cache, it->second);
+            cache.splice(cache.begin(), cache, it->second);
+            return;
         }
         cache.insert(cache.begin(), make_pair(key, value));
         hash[key] = cache.begin();

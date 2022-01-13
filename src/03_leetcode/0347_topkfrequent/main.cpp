@@ -12,7 +12,7 @@ std::vector<int> findFrequentNumbers(const std::vector<int> nums, int k) {
     for (const int &val: nums) {
         maxCount = std::max(maxCount, ++buckets[val]);
     }
-    vector<vector<int> > frequentArray(buckets.size() + 1);
+    vector<vector<int> > frequentArray(maxCount + 1);
     for (const auto &bucket: buckets) {
         frequentArray[bucket.second].push_back(bucket.first);
     }
@@ -31,6 +31,6 @@ std::vector<int> findFrequentNumbers(const std::vector<int> nums, int k) {
 }
 
 int main(void) {
-    std::vector<int> a = {1, 1, 1, 1, 2, 2, 3, 4};
-    std::vector<int> ret = findFrequentNumbers(a, 2);
+    std::vector<int> a = {-1,-1};
+    std::vector<int> ret = findFrequentNumbers(a, 1);
 }
